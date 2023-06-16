@@ -20,7 +20,9 @@ function App() {
     const response  = await fetch(`http://worldtimeapi.org/api/timezone/${timezone}`);
     const data: TimezoneData = await response.json();
 
-    const datetime = new Date(data.datetime as string).toLocaleString();
+    const datetime = new Date(data.datetime as string).toLocaleString(undefined, {
+      timeZone: timezone,
+    });
 
     setSelectedTimezoneDatetime(datetime);
   }
