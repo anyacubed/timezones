@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
+import { TimezoneData } from '../types/interfaces';
+import Select from '../components/Select/Select';
+import Datetime from '../components/Datetime/Datetime';
 import './App.css';
-
-interface TimezoneData {
-  [key: string]: string | boolean | number | null;
-}
 
 function App() {
   const [timezones, setTimezones] = useState<string[]>([]);
@@ -26,9 +25,7 @@ function App() {
     setSelectedTimezoneDatetime(datetime);
   }
 
-  function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedTimezone = event.target.value;
-
+  function handleSelect(selectedTimezone: string) {
     setSelectedTimezone(selectedTimezone);
   }
 
@@ -48,14 +45,10 @@ function App() {
     }
   }, [selectedTimezone]);
 
-  return <>
-    <select onChange={handleSelect}>
-      {timezones.map((timezone: string) => {
-        return <option key={timezone} value={timezone}>{timezone}</option>;
-      })}
-    </select>
-    {selectedTimezoneDatetime && <div>{selectedTimezoneDatetime}</div>}
-  </>;
+  return <div className='app'>
+    <Select timezones={timezones} onSelect={handleSelect} />
+    <Datetime datetime={selectedTimezoneDatetime} />
+  </div>;
 }
 
 export default App;
