@@ -16,7 +16,7 @@ function App() {
     setTimezones(data);
   }
 
-  async function fetchSelectedTimezoneData(timezone: string) {
+  async function fetchSelectedTimezoneData(timezone: string): Promise<void> {
     const response  = await fetch(`http://worldtimeapi.org/api/timezone/${timezone}`);
     const data: TimezoneData = await response.json();
 
@@ -27,7 +27,7 @@ function App() {
     setSelectedTimezoneDatetime(datetime);
   }
 
-  function handleSelect(selectedTimezone: string) {
+  function handleSelect(selectedTimezone: string): void {
     setSelectedTimezone(selectedTimezone);
   }
 
