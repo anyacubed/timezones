@@ -9,7 +9,7 @@ function Select({ timezones, onSelect }: SelectProps) {
   }
 
   return <select onChange={handleSelect} className='select' defaultValue='Select'>
-    <option value='Select' disabled>Select time zone</option>
+    <option value='Select' disabled hidden>Select time zone</option>
     {timezones.map((timezone: string) => {
       return <option key={timezone} value={timezone}>{timezone}</option>;
     })}
